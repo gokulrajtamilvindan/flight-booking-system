@@ -1,10 +1,13 @@
 package com.fbs.db_api.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Data
 @Entity
 @Table(name = "aircraft")
 public class AirCraft {
@@ -19,4 +22,6 @@ public class AirCraft {
     int capacity;
     @ManyToOne
     AirLine airLine;
+    LocalDateTime createdAt;
+    LocalDateTime updatedAt;
 }

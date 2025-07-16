@@ -1,13 +1,14 @@
 package com.fbs.db_api.models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Data
+@Entity
+@Table(name = "flight")
 public class Flight {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,4 +26,6 @@ public class Flight {
     LocalDateTime departureTime; // when aircraft is going to take-off //IST Time zone
     LocalDateTime arrivalTime; //when aircraft is going to land // EST Time zone
     boolean isConnecting; // is this flight a connecting flight ? or not
+    LocalDateTime createdAt;
+    LocalDateTime updatedAt;
 }

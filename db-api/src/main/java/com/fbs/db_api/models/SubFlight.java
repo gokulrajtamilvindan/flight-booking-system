@@ -1,13 +1,13 @@
 package com.fbs.db_api.models;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
-
+@Data
+@Entity
+@Table(name = "sub_flight")
 public class SubFlight {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,4 +21,6 @@ public class SubFlight {
     LocalDateTime departureTime;
     LocalDateTime arrivalTime;
     int boardingMinutes;
+    LocalDateTime createdAt;
+    LocalDateTime updatedAt;
 }
