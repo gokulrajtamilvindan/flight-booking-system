@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 /*
     This particular controller is created to send notifications to App Admin
  */
+
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/notify/appadmin")
@@ -22,9 +23,11 @@ public class AppAdminNotificationController {
     public AppAdminNotificationController(AppAdminNotificationService appAdminNotificationService) {
         this.appAdminNotificationService = appAdminNotificationService;
     }
+
     /*
         To send registration request email of a airline to application admin.
      */
+
     @PutMapping("/airline-registration")
     public void airLineRegistrationRequestNotification(@RequestBody AirLineRegistrationRequestDto airLineRegistrationRequestDto) {
         log.info("Inside airLineRegistrationRequestNotification with payload : " + airLineRegistrationRequestDto.toString());

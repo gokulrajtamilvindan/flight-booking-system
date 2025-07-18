@@ -15,6 +15,7 @@ import java.util.UUID;
     --Delhi to mumbai to chandigarh to sikkim
     --subFlight -> [(Delhi - mumbai), (mumbai - chandigarh)]
  */
+
 @Data
 @Entity
 @Table(name = "booking")

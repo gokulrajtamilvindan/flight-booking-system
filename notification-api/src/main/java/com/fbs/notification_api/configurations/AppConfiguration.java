@@ -15,13 +15,16 @@ public class AppConfiguration {
         @Bean annotation will ask spring boot to save the hashmap object inside the IOC container
         and whenever someone will try to @Autowire hashmap object spring boot will provide that object from the IOC Container
      */
+
     @Bean
     public HashMap<Integer, Integer> generateHashMap() {
         return new HashMap<>();
     }
+
     /*
         Java mail sender is the class or library that will help our spring boot code to send mails to emailIds
      */
+
     @Bean
     public JavaMailSender generateJavaMailSender() {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
@@ -36,9 +39,11 @@ public class AppConfiguration {
         properties.put("mail.smtp.starttls.enable", "true"); // This property we are setting for secure connection
         return javaMailSender;
     }
+
     /*
         Below method will create a @Bean of TemplateEngine class(Present Inside ThymeLeaf Library), and it will store it inside the IOC container
      */
+
     public TemplateEngine getThymeLeafBean() {
         return new TemplateEngine();
     }

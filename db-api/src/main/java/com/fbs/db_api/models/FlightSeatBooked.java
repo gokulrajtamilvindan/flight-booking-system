@@ -9,6 +9,7 @@ import java.util.UUID;
 /*
     This booking table we are strictly going to use for non-connecting flights
 */
+
 @Data
 @Entity
 @Table(name = "flight_booked_seats")

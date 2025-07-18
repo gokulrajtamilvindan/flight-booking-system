@@ -9,6 +9,7 @@ import java.util.UUID;
 /*
     This flight seat mapping model will be used for non connecting flights
 */
+
 @Data
 @Entity
 @Table(name = "flight_seat_mapping")

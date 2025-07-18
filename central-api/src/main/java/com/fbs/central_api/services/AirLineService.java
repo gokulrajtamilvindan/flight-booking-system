@@ -9,21 +9,31 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Slf4j
 @Service
 public class AirLineService {
     MappingUtility mappingUtility;
     DbApiConnector dbApiConnector;
+    UserService userService;
+    MailService mailService;
 
     @Autowired
     public AirLineService(MappingUtility mappingUtility,
-                          DbApiConnector dbApiConnector) {
+                          DbApiConnector dbApiConnector,
+                          UserService userService,
+                          MailService mailService) {
         this.mappingUtility = mappingUtility;
         this.dbApiConnector = dbApiConnector;
+        this.userService = userService;
+        this.mailService = mailService;
     }
+
     /*
         This function work is to call db api and save airline details in airline table and airline admins details in user table.
      */
+
     public AirLine registerAirLine(AirLineRegistrationDto airLineRegistrationDto) {
         log.info("airLineService registerAirLine method called : " + airLineRegistrationDto.toString());
         // before calling db api lets map the details which we are getting in dto to respective models
@@ -45,5 +55,10 @@ public class AirLineService {
         // we will be creating another microservice whose work is to send notifications to the use via email
         // Now we need to mail application admin regarding airline registration request
         // So, to mail we require application admin object
+        // We need to mail all the system admins so, we need to get all the system admins from the table
+        List<AppUser> systemAdminsList = userService.getAllSystemAdmins();
+        // Mail All System Admins
+        mailService.mailSystemAdminForAirLineRegistration(systemAdminsList, airLine);
+        return airLine;
     }
 }
