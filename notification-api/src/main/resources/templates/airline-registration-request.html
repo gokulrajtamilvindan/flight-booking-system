@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Airline Registration Request</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 620px;
+            margin: 40px auto;
+            background-color: #1c1c1e;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 12px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            background-color: #000;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 22px;
+            letter-spacing: 0.5px;
+        }
+
+        .content {
+            padding: 30px 24px;
+            color: #dcdcdc;
+        }
+
+        .content h2 {
+            color: #ffffff;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 24px;
+        }
+
+        .content td {
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .content td.label {
+            font-weight: bold;
+            color: #aaaaaa;
+            width: 40%;
+        }
+
+        .btn-group {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        .btn-accept {
+            background-color: #ffffff;
+            color: #000000 !important;
+        }
+
+        .btn-reject {
+            background-color: #ff4d4f;
+            color: #ffffff !important;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            padding: 20px;
+            color: #888888;
+        }
+
+        @media screen and (max-width: 640px) {
+            .container {
+                margin: 10px;
+            }
+
+            .btn {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Airline Registration Request</h1>
+    </div>
+
+    <div class="content">
+        <h2>New Airline Registration Submitted</h2>
+
+        <table>
+            <tr>
+                <td class="label">Airline Name:</td>
+                <td>[[${airlineName}]]</td>
+            </tr>
+            <tr>
+                <td class="label">Company Name:</td>
+                <td>[[${companyName}]]</td>
+            </tr>
+            <tr>
+                <td class="label">Website:</td>
+                <td><a href="[[${website}]]" style="color:#4da6ff;">[[${website}}]]</a></td>
+            </tr>
+            <tr>
+                <td class="label">Employees:</td>
+                <td>[[${employees}]]</td>
+            </tr>
+            <tr>
+                <td class="label">Total Flights:</td>
+                <td>[[${totalFlights}]]</td>
+            </tr>
+            <tr>
+                <td class="label">Admin Name:</td>
+                <td>[[${airlineAdminName}]]</td>
+            </tr>
+            <tr>
+                <td class="label">Admin Email:</td>
+                <td>[[${adminEmail}]]</td>
+            </tr>
+            <tr>
+                <td class="label">Requested At:</td>
+                <td>[[${requestedTime}]]</td>
+            </tr>
+        </table>
+
+        <div class="btn-group">
+            <a th:href="[[${acceptUrl}]]" class="btn btn-accept">Accept</a>
+            <a th:href="[[${rejectUrl}]]" class="btn btn-reject">Reject</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        &copy; 2025 AccioJob Flight Booking System — All rights reserved.
+    </div>
+</div>
+
+</body>
+</html>
