@@ -1,6 +1,6 @@
 package com.fbs.central_api.dtos;
 
-import com.fbs.central_api.models.AirLine;
+import com.fbs.central_api.models.Airline;
 import com.fbs.central_api.models.AppUser;
 import lombok.*;
 
@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class AirLineRegistrationRequestDto {
+public class AirlineRegistrationRequestDto {
     AppUser appAdmin;
-    AirLine airLine;
+    Airline airline;
 }

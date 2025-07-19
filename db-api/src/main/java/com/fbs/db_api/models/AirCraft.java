@@ -21,7 +21,7 @@ public class AirCraft {
     LocalDate buildDate;
     int capacity;
     @ManyToOne
-    AirLine airLine;
+    Airline airline;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
 }

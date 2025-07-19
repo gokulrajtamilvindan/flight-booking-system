@@ -1,7 +1,7 @@
 package com.fbs.db_api.controllers;
 
-import com.fbs.db_api.models.AirLine;
-import com.fbs.db_api.repositories.AirLineRepository;
+import com.fbs.db_api.models.Airline;
+import com.fbs.db_api.repositories.AirlineRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,19 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/db/airline")
-public class AirLineController {
-    AirLineRepository airlineRepository;
+public class AirlineController {
+    AirlineRepository airlineRepository;
 
     @Autowired
-    public AirLineController(AirLineRepository airlineRepository) {
+    public AirlineController(AirlineRepository airlineRepository) {
         this.airlineRepository = airlineRepository;
     }
 
     @PostMapping("/create")
-    public ResponseEntity createAirline(@RequestBody AirLine airLine) {
+    public ResponseEntity createAirline(@RequestBody Airline airLine) {
         // To save airline we need airline repository
         log.info("Request Body : " + airLine.toString());
-        AirLine airlineResponse = airlineRepository.save(airLine);
+        Airline airlineResponse = airlineRepository.save(airLine);
         return new ResponseEntity<>(airlineResponse, HttpStatus.CREATED);
     }
 }

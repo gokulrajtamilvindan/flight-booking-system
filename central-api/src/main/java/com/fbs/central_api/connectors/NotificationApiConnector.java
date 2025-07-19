@@ -1,6 +1,6 @@
 package com.fbs.central_api.connectors;
 
-import com.fbs.central_api.dtos.AirLineRegistrationRequestDto;
+import com.fbs.central_api.dtos.AirlineRegistrationRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
@@ -20,9 +20,9 @@ public class NotificationApiConnector {
     @Value("${notification.api.url}")
     String notificationBaseUrl;
 
-    public void notifySystemAdminForAirLineRegistration(AirLineRegistrationRequestDto airLineRegistrationRequestDto) {
+    public void notifySystemAdminForAirlineRegistration(AirlineRegistrationRequestDto airlineRegistrationRequestDto) {
         String url = notificationBaseUrl + "/appadmin/airline-registration";
-        RequestEntity request = RequestEntity.put(url).body(airLineRegistrationRequestDto);
+        RequestEntity request = RequestEntity.put(url).body(airlineRegistrationRequestDto);
         restTemplate.exchange(url, HttpMethod.PUT, request, Object.class);
     }
 }

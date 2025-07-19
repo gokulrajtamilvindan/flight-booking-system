@@ -9,14 +9,14 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name = "airlines")
-public class AirLine {
+public class Airline {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     UUID id;
     @Column(unique = true, nullable = false)
     String website;
     @Column(unique = true, nullable = false)
-    String airLineName;
+    String airlineName;
     @Column(unique = true, nullable = false)
     String companyName;
     int employees;

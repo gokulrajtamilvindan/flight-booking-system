@@ -1,6 +1,6 @@
 package com.fbs.central_api.enums;
 
-public enum AirLineStatusEnum {
+public enum AirlineStatusEnum {
     INACTIVE,
     ACTIVE,
     CLOSED,

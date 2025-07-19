@@ -7,9 +7,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class AirLineRegistrationDto {
+public class AirlineRegistrationDto {
     String website;
-    String airLineName;
+    String airlineName;
     String companyName;
     int employees;
     int totalFlights;

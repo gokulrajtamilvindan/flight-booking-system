@@ -129,7 +129,7 @@
             </tr>
             <tr>
                 <td class="label">Website:</td>
-                <td><a href="[[${website}]]" style="color:#4da6ff;">[[${website}}]]</a></td>
+                <td><a href="[[${website}]]" style="color:#4da6ff;">[[${{website}}]]</a></td>
             </tr>
             <tr>
                 <td class="label">Employees:</td>
@@ -154,8 +154,12 @@
         </table>
 
         <div class="btn-group">
-            <a th:href="[[${acceptUrl}]]" class="btn btn-accept">Accept</a>
-            <a th:href="[[${rejectUrl}]]" class="btn btn-reject">Reject</a>
+            <form th:action="@{${acceptLink}}" method="put">
+                <button type="submit" class="btn btn-accept">Accept</button>
+            </form>
+            <form th:action="@{${rejectLink}}" method="put">
+                <button type="submit" class="btn btn-reject">Reject</button>
+            </form>
         </div>
     </div>
 

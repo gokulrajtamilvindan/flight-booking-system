@@ -1,6 +1,6 @@
 package com.fbs.notification_api.dtos;
 
-import com.fbs.notification_api.models.AirLine;
+import com.fbs.notification_api.models.Airline;
 import com.fbs.notification_api.models.AppUser;
 import lombok.*;
 
@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class AirLineRegistrationRequestDto {
+public class AirlineRegistrationRequestDto {
     AppUser appAdmin;
-    AirLine airLine;
+    Airline airline;
 }

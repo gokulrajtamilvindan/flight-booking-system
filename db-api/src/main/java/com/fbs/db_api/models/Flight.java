@@ -14,7 +14,7 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.AUTO)
     UUID id;
     @ManyToOne
-    AirLine airLine;
+    Airline airline;
     @ManyToOne
     AirCraft airCraft;
     String sourceAirport; // mumbai

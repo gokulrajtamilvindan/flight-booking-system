@@ -32,8 +32,8 @@ public class AppConfiguration {
         // we need to provide credentials of the emailId by using which our backend will send mail to the user of application
         javaMailSender.setHost("smtp.gmail.com"); // For now email which I am using belongs to gmail so, the host will be smtp.gmail.com
         javaMailSender.setPort(587); // generally to send mail from our computer we require some port number so, the port number which we will use is 587
-        javaMailSender.setUsername("acentral832@gmail.com"); // We will be sending email so, by what email our spring application will send mail to the users
-        javaMailSender.setPassword("Central@11"); // Password of the email.... It is app password, not actual password
+        javaMailSender.setUsername("accioshoppingwebsite@gmail.com"); // We will be sending email so, by what email our spring application will send mail to the users
+        javaMailSender.setPassword("relcfdwhahhcvokv"); // Password of the email.... It is app password, not actual password
         Properties properties = javaMailSender.getJavaMailProperties();
         properties.put("mail.smtp.auth", "true"); // Our spring boot api will connect gmail to send email via password so, mail.smtp.auth is true
         properties.put("mail.smtp.starttls.enable", "true"); // This property we are setting for secure connection

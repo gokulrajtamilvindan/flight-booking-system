@@ -10,10 +10,10 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class AirLine {
+public class Airline {
     UUID id;
     String website;
-    String airLineName;
+    String airlineName;
     String companyName;
     int employees;
     int totalFlights;

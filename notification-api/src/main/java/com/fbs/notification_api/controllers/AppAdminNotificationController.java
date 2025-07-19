@@ -1,6 +1,6 @@
 package com.fbs.notification_api.controllers;
 
-import com.fbs.notification_api.dtos.AirLineRegistrationRequestDto;
+import com.fbs.notification_api.dtos.AirlineRegistrationRequestDto;
 import com.fbs.notification_api.services.AppAdminNotificationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +29,10 @@ public class AppAdminNotificationController {
      */
 
     @PutMapping("/airline-registration")
-    public void airLineRegistrationRequestNotification(@RequestBody AirLineRegistrationRequestDto airLineRegistrationRequestDto) {
-        log.info("Inside airLineRegistrationRequestNotification with payload : " + airLineRegistrationRequestDto.toString());
+    public void airlineRegistrationRequestNotification(@RequestBody AirlineRegistrationRequestDto airlineRegistrationRequestDto) {
+        log.info("Inside airlineRegistrationRequestNotification with payload : " + airlineRegistrationRequestDto.toString());
         // From here we need to call appAdminNotificationService
         // We will be calling service layer which will be sending mail to application admin
-        appAdminNotificationService.sendAirLineRegistrationRequestNotification(airLineRegistrationRequestDto);
+        appAdminNotificationService.sendAirlineRegistrationRequestNotification(airlineRegistrationRequestDto);
     }
 }
