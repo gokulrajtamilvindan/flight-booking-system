@@ -29,4 +29,8 @@ public class UserService {
         // To get all the system admins from the user table we need to call the DbApiConnector
         return dbApiConnector.callGetAllUsersByUserTypeEndpoint(UserTypeEnum.SYSTEM_ADMIN.toString());
     }
+
+    public AppUser updateUserDetails(AppUser user) {
+        return dbApiConnector.callUpdateUserEndpoint(user);
+    }
 }

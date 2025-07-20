@@ -2,6 +2,8 @@ package com.fbs.central_api.services;
 
 import com.fbs.central_api.connectors.DbApiConnector;
 import com.fbs.central_api.dtos.AirlineRegistrationDto;
+import com.fbs.central_api.enums.AirlineStatusEnum;
+import com.fbs.central_api.enums.UserStatusEnum;
 import com.fbs.central_api.models.Airline;
 import com.fbs.central_api.models.AppUser;
 import com.fbs.central_api.utilities.MappingUtility;
@@ -9,7 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -59,6 +63,38 @@ public class AirlineService {
         List<AppUser> systemAdminsList = userService.getAllSystemAdmins();
         // Mail All System Admins
         mailService.mailSystemAdminForAirlineRegistration(systemAdminsList, airline);
+        return airline;
+    }
+
+    public Airline getAirlineById(UUID airlineId) {
+        // So, to get the airline by id we need to call database api
+        // So, to call database api we require database api connector
+        return dbApiConnector.callAirlineByIdEndpoint(airlineId);
+    }
+
+    public Airline updateAirlineDetails(Airline airline) {
+        // We should call database api to update the airline object in the airline table
+        return dbApiConnector.callUpdateAirlineEndpoint(airline);
+    }
+
+    public Airline acceptAirlineRequest(UUID airlineId) {
+        // 1. to get the airline object on the basis of Id.
+        // 2. Update the status of airline as well status of airline Admin.
+        // 3. Save those changes into their respective tables in the database.
+        // 4. We need to mail airline admin that congratulations your request got approved.
+        log.info("airlineId : " + airlineId.toString());
+        Airline airline = getAirlineById(airlineId);
+        airline.setStatus(AirlineStatusEnum.ACTIVE.toString());
+        airline.setUpdatedAt(LocalDateTime.now());
+        // So, now we want to save the changes of airline to airline table and airline admin to user table
+        // Airline Admin -> update the status of airline admin to ACTIVE
+        airline = updateAirlineDetails(airline);
+        AppUser airlineAdmin = airline.getAdmin();
+        airlineAdmin.setStatus(UserStatusEnum.ACTIVE.toString());
+        airline.setUpdatedAt(LocalDateTime.now());
+        userService.updateUserDetails(airlineAdmin);
+        // Mail Airline Admin that your request got accepted now you are part of our application.
+        mailService.mailAcceptRequestToAirlineAdmin(airline);
         return airline;
     }
 }

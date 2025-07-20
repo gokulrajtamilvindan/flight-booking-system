@@ -7,10 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Slf4j
 @RestController
@@ -33,5 +32,18 @@ public class AirlineController {
         // From here we will call airline service register airline method
         Airline airline = airlineService.registerAirline(airlineRegistrationDto);
         return new ResponseEntity<>(airline, HttpStatus.CREATED);
+    }
+
+    /*
+        This endpoint will get triggered from the mail which we have sent to system admin.
+        When System Admin will check over accept button this endpoint will trigger.
+        Work of this endpoint to change the status of airline to ACTIVE also it will change the status of airline admin also to active
+     */
+
+    @GetMapping("/request/accept/{airlineId}")
+    public void acceptAirlineRequest(@PathVariable UUID airlineId) {
+        log.info("airlineId : " + airlineId.toString());
+        // we will be calling our airlineService to change the status of airline and airline admin
+        airlineService.acceptAirlineRequest(airlineId);
     }
 }

@@ -32,11 +32,11 @@ public class MailService {
             AirlineRegistrationRequestDto airlineRegistrationRequestDto = new AirlineRegistrationRequestDto();
             airlineRegistrationRequestDto.setAirline(airline);
             airlineRegistrationRequestDto.setAppAdmin(systemAdmin);
-            try {
-                notificationApiConnector.notifySystemAdminForAirlineRegistration(airlineRegistrationRequestDto);
-            } catch (Exception e) {
-                log.error(e.getMessage());
-            }
+            notificationApiConnector.notifySystemAdminForAirlineRegistration(airlineRegistrationRequestDto);
         }
+    }
+
+    public void mailAcceptRequestToAirlineAdmin(Airline airline) {
+        notificationApiConnector.notifyAcceptRequestToAirlineAdmin(airline);
     }
 }

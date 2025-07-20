@@ -39,4 +39,10 @@ public class AppUserController {
         allUsersDto.setAppUsers(users);
         return new ResponseEntity<>(allUsersDto, HttpStatus.OK);
     }
+
+    @PutMapping("/update")
+    public ResponseEntity update(@RequestBody AppUser user) {
+        appUserRepository.save(user);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.UUID;
 
 /*
     Purpose of this class is to connect with db-api endpoints.
@@ -80,5 +81,26 @@ public class DbApiConnector {
         RequestEntity request = RequestEntity.get(url).build();
         ResponseEntity<AllUsersDto> response = restTemplate.exchange(url, HttpMethod.GET, request, AllUsersDto.class);
         return response.getBody().getAppUsers();
+    }
+
+    public Airline callAirlineByIdEndpoint(UUID airlineId) {
+        String url = dbApiBaseUrl + "/airline/" + airlineId.toString();
+        RequestEntity request = RequestEntity.get(url).build();
+        ResponseEntity<Airline> response = restTemplate.exchange(url, HttpMethod.GET, request, Airline.class);
+        return response.getBody();
+    }
+
+    public Airline callUpdateAirlineEndpoint(Airline airline) {
+        String url = dbApiBaseUrl + "/airline/update";
+        RequestEntity request = RequestEntity.put(url).body(airline);
+        ResponseEntity<Airline> response = restTemplate.exchange(url, HttpMethod.PUT, request, Airline.class);
+        return response.getBody();
+    }
+
+    public AppUser callUpdateUserEndpoint(AppUser user) {
+        String url = dbApiBaseUrl + "/user/update";
+        RequestEntity request = RequestEntity.put(url).body(user);
+        ResponseEntity<AppUser> response = restTemplate.exchange(url, HttpMethod.PUT, request, AppUser.class);
+        return response.getBody();
     }
 }
