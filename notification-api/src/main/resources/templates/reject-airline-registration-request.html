@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Request Cancelled</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f6f6f6; padding: 20px;">
+<table width="100%" cellpadding="0" cellspacing="0"
+       style="max-width: 600px; margin: auto; background-color: #ffffff;
+                border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px;">
+    <tr>
+        <td>
+            <h2 style="color: #d9534f;">Request Cancelled</h2>
+            <p>Dear [[${adminName}]],</p>
+            <p>We regret to inform you that your recent request has been <strong>cancelled</strong> due to the following reason:</p>
+
+            <!-- Reason Text Box -->
+            <textarea readonly style="width: 100%; height: 100px; padding: 10px;
+                border: 1px solid #ccc; border-radius: 4px; resize: none;
+                font-size: 14px; background-color: #f9f9f9;">[[${reason}]]</textarea>
+
+            <p>If you have any questions or believe this was an error, feel free to contact our support team.</p>
+            <p>Regards,<br/>Airline Operations Team</p>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.fbs.notification_api.controllers;
 
+import com.fbs.notification_api.dtos.AirlineRejectDto;
 import com.fbs.notification_api.models.Airline;
 import com.fbs.notification_api.services.AirlineNotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,10 @@ public class AirlineNotificationController {
     @PutMapping("/admin/accept-request")
     public void airlineAdminAcceptNotification(@RequestBody Airline airline) {
         airlineNotificationService.airlineAcceptRequestNotification(airline);
+    }
+
+    @PutMapping("/admin/reject-request")
+    public void airlineAdminRejectNotification(@RequestBody AirlineRejectDto airlineRejectDto) {
+        airlineNotificationService.airlineRejectRequestNotification(airlineRejectDto);
     }
 }

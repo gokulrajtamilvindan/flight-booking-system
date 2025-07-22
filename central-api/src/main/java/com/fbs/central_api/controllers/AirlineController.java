@@ -42,8 +42,14 @@ public class AirlineController {
 
     @GetMapping("/request/accept/{airlineId}")
     public void acceptAirlineRequest(@PathVariable UUID airlineId) {
-        log.info("airlineId : " + airlineId.toString());
+        log.info("Accept Airline function - airlineId : " + airlineId.toString());
         // we will be calling our airlineService to change the status of airline and airline admin
         airlineService.acceptAirlineRequest(airlineId);
+    }
+
+    @GetMapping("/request/reject/{airlineId}")
+    public void rejectAirlineRequest(@PathVariable UUID airlineId) {
+        log.info("Reject Airline function - airlineId : " + airlineId.toString());
+        airlineService.rejectAirlineRequest(airlineId);
     }
 }

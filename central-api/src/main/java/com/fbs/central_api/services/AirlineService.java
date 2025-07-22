@@ -1,11 +1,13 @@
 package com.fbs.central_api.services;
 
 import com.fbs.central_api.connectors.DbApiConnector;
+import com.fbs.central_api.connectors.GeminiApiConnector;
 import com.fbs.central_api.dtos.AirlineRegistrationDto;
 import com.fbs.central_api.enums.AirlineStatusEnum;
 import com.fbs.central_api.enums.UserStatusEnum;
 import com.fbs.central_api.models.Airline;
 import com.fbs.central_api.models.AppUser;
+import com.fbs.central_api.models.GeminiApiResponse;
 import com.fbs.central_api.utilities.MappingUtility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +24,19 @@ public class AirlineService {
     DbApiConnector dbApiConnector;
     UserService userService;
     MailService mailService;
+    GeminiApiConnector geminiApiConnector;
 
     @Autowired
     public AirlineService(MappingUtility mappingUtility,
                           DbApiConnector dbApiConnector,
                           UserService userService,
-                          MailService mailService) {
+                          MailService mailService,
+                          GeminiApiConnector geminiApiConnector) {
         this.mappingUtility = mappingUtility;
         this.dbApiConnector = dbApiConnector;
         this.userService = userService;
         this.mailService = mailService;
+        this.geminiApiConnector = geminiApiConnector;
     }
 
     /*
@@ -96,5 +101,20 @@ public class AirlineService {
         // Mail Airline Admin that your request got accepted now you are part of our application.
         mailService.mailAcceptRequestToAirlineAdmin(airline);
         return airline;
+    }
+
+    public void rejectAirlineRequest(UUID airlineId) {
+        // Verify the ID of airline is correct or not?
+        // If it is correct -> fine or else we will throw exception
+        Airline airline = this.getAirlineById(airlineId);
+        airline.setStatus(AirlineStatusEnum.REJECTED.toString());
+        this.updateAirlineDetails(airline);
+        // We need to generate rejection reason
+        String prompt = "Generate Professional Failure Reason for the airline details : " + airline.toString();
+        GeminiApiResponse geminiApiResponse = geminiApiConnector.callGeminiGenAiEndpoint(prompt);
+        String rejectReason = geminiApiResponse.getCandidates().get(0).getContent().getParts().get(0).getText();
+        // We need to mail this rejectReason to airline admin that his request got cancelled because of this reasons.
+        // I need to call notification api such that Airline admin will receive mail that these are the resons for rejection.
+        mailService.mailRejectRequestToAirlineAdmin(airline.getAdmin().getEmail(), airline.getAdmin().getName(), rejectReason);
     }
 }
