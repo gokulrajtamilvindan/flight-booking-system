@@ -45,4 +45,10 @@ public class AppUserController {
         appUserRepository.save(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
+    @GetMapping("/get/{email}")
+    public ResponseEntity getByEmail(@PathVariable String email) {
+        AppUser user = appUserRepository.findByEmail(email);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 }
