@@ -32,7 +32,7 @@ public class AppUserController {
         return new ResponseEntity<>(userResponse, HttpStatus.CREATED);
     }
 
-    @GetMapping("/get/{userType}")
+    @GetMapping("/get-by-usertype/{userType}")
     public ResponseEntity getAllUsersByUserType(@PathVariable String userType) {
         List<AppUser> users = appUserRepository.findByUserType(userType);
         AllUsersDto allUsersDto = new AllUsersDto();
@@ -46,7 +46,7 @@ public class AppUserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @GetMapping("/get/{email}")
+    @GetMapping("/get-by-email/{email}")
     public ResponseEntity getByEmail(@PathVariable String email) {
         AppUser user = appUserRepository.findByEmail(email);
         return new ResponseEntity<>(user, HttpStatus.OK);

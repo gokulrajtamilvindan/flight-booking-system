@@ -1,12 +1,12 @@
 package com.fbs.central_api.dtos;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class AirlineRejectDto {
     String airlineAdminName;
     String airlineAdminEmail;

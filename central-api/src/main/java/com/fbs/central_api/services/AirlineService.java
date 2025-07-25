@@ -117,4 +117,9 @@ public class AirlineService {
         // I need to call notification api such that Airline admin will receive mail that these are the resons for rejection.
         mailService.mailRejectRequestToAirlineAdmin(airline.getAdmin().getEmail(), airline.getAdmin().getName(), rejectReason);
     }
+
+    public Airline getAirlineByAdminId(UUID adminId) {
+        // DbApiConnector to get the airline details
+        return dbApiConnector.callGetAirlineByAdminIdEndpoint(adminId);
+    }
 }

@@ -1,15 +1,15 @@
 package com.fbs.central_api.dtos;
 
 import com.fbs.central_api.models.AppUser;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class AllUsersDto {
     List<AppUser> appUsers;
 }

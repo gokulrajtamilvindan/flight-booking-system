@@ -16,7 +16,7 @@ public class Flight {
     @ManyToOne
     Airline airline;
     @ManyToOne
-    AirCraft airCraft;
+    Aircraft aircraft;
     String sourceAirport; // mumbai
     String destinationAirport; // new york
     String flightType; //International, Domestic, Emergency

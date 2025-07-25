@@ -10,12 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Collections;
 
 @Component
-public class AuthFilter {
+public class AuthFilter extends OncePerRequestFilter {
     UserService userService;
     AuthUtility authUtility;
 
@@ -25,6 +26,11 @@ public class AuthFilter {
         this.userService = userService;
         this.authUtility = authUtility;
     }
+
+    /*
+        If the Token is valid then we will be setting usernamePasswordAuthentication and calling the doFilter method.
+        If the Token is invalid then without setting usernamePasswordAuthentication, we are directly calling doFilter method.
+     */
 
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String bearerToken = request.getHeader("Authorization");

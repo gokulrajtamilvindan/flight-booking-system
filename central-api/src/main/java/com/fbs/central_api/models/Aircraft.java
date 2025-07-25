@@ -1,18 +1,17 @@
-package com.fbs.db_api.models;
+package com.fbs.central_api.models;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
-@Entity
-@Table(name = "aircraft")
-public class AirCraft {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+@NoArgsConstructor
+@AllArgsConstructor
+public class Aircraft {
     UUID id;
     int modelNumber;
     String manufacturer;
@@ -20,7 +19,6 @@ public class AirCraft {
     int totalFlights;
     LocalDate buildDate;
     int capacity;
-    @ManyToOne
     Airline airline;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;

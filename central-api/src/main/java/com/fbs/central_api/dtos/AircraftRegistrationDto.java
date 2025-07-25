@@ -4,16 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AirlineRegistrationDto {
-    String website;
-    String airlineName;
-    String companyName;
-    int employees;
+public class AircraftRegistrationDto {
+    int modelNumber;
+    String manufacturer;
+    String modelName;
     int totalFlights;
-    String email;
-    String password;
-    Long contactNumber;
+    LocalDate buildDate;
+    int capacity;
 }

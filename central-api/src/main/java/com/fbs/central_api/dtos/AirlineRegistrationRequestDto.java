@@ -2,13 +2,13 @@ package com.fbs.central_api.dtos;
 
 import com.fbs.central_api.models.Airline;
 import com.fbs.central_api.models.AppUser;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class AirlineRegistrationRequestDto {
     AppUser appAdmin;
     Airline airline;

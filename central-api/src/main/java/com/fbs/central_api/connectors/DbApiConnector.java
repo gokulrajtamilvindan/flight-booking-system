@@ -1,6 +1,7 @@
 package com.fbs.central_api.connectors;
 
 import com.fbs.central_api.dtos.AllUsersDto;
+import com.fbs.central_api.models.Aircraft;
 import com.fbs.central_api.models.Airline;
 import com.fbs.central_api.models.AppUser;
 import lombok.extern.slf4j.Slf4j;
@@ -77,7 +78,7 @@ public class DbApiConnector {
      */
 
     public List<AppUser> callGetAllUsersByUserTypeEndpoint(String userType) {
-        String url = dbApiBaseUrl + "/user/get/" + userType;
+        String url = dbApiBaseUrl + "/user/get-by-usertype/" + userType;
         RequestEntity request = RequestEntity.get(url).build();
         ResponseEntity<AllUsersDto> response = restTemplate.exchange(url, HttpMethod.GET, request, AllUsersDto.class);
         return response.getBody().getAppUsers();
@@ -105,9 +106,23 @@ public class DbApiConnector {
     }
 
     public AppUser callGetUserByEmailEndpoint(String email) {
-        String url = dbApiBaseUrl + "/user/get/" + email;
+        String url = dbApiBaseUrl + "/user/get-by-email/" + email;
         RequestEntity request = RequestEntity.get(url).build();
         ResponseEntity<AppUser> response = restTemplate.exchange(url, HttpMethod.GET, request, AppUser.class);
+        return response.getBody();
+    }
+
+    public Airline callGetAirlineByAdminIdEndpoint(UUID adminId) {
+        String url = dbApiBaseUrl + "/airline/get-airline-by-adminId/" + adminId.toString();
+        RequestEntity request = RequestEntity.get(url).build();
+        ResponseEntity<Airline> response = restTemplate.exchange(url, HttpMethod.GET, request, Airline.class);
+        return response.getBody();
+    }
+
+    public Aircraft callCreateAircraftEndpoint(Aircraft aircraft) {
+        String url = dbApiBaseUrl + "/aircraft/create";
+        RequestEntity request = RequestEntity.post(url).body(aircraft);
+        ResponseEntity<Aircraft> response = restTemplate.exchange(url, HttpMethod.POST, request, Aircraft.class);
         return response.getBody();
     }
 }

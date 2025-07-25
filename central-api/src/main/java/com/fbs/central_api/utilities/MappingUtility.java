@@ -1,9 +1,11 @@
 package com.fbs.central_api.utilities;
 
+import com.fbs.central_api.dtos.AircraftRegistrationDto;
 import com.fbs.central_api.dtos.AirlineRegistrationDto;
 import com.fbs.central_api.enums.AirlineStatusEnum;
 import com.fbs.central_api.enums.UserStatusEnum;
 import com.fbs.central_api.enums.UserTypeEnum;
+import com.fbs.central_api.models.Aircraft;
 import com.fbs.central_api.models.Airline;
 import com.fbs.central_api.models.AppUser;
 import org.springframework.stereotype.Component;
@@ -38,5 +40,19 @@ public class MappingUtility {
         airline.setCreatedAt(LocalDateTime.now());
         airline.setUpdatedAt(LocalDateTime.now());
         return airline;
+    }
+
+    public Aircraft mapAircraftRegistrationDtoToAircraft(AircraftRegistrationDto aircraftRegistrationDto, Airline airline) {
+        Aircraft aircraft = new Aircraft();
+        aircraft.setAirline(airline);
+        aircraft.setCapacity(aircraftRegistrationDto.getCapacity());
+        aircraft.setManufacturer(aircraftRegistrationDto.getManufacturer());
+        aircraft.setModelName(aircraftRegistrationDto.getModelName());
+        aircraft.setTotalFlights(aircraftRegistrationDto.getTotalFlights());
+        aircraft.setModelNumber(aircraftRegistrationDto.getModelNumber());
+        aircraft.setBuildDate(aircraftRegistrationDto.getBuildDate());
+        aircraft.setCreatedAt(LocalDateTime.now());
+        aircraft.setUpdatedAt(LocalDateTime.now());
+        return aircraft;
     }
 }

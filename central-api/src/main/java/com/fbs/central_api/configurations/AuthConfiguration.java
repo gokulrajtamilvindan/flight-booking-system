@@ -28,11 +28,13 @@ public class AuthConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf()
-                .disable()
-                .authorizeHttpRequests(
-                        auth -> auth.requestMatchers(
-                                "/api/v1/central/user/login"
+        return http
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/api/v1/central/user/login",
+                                "/api/v1/central/airline/register",
+                                "api/v1/central/airline/request/accept/{airlineId}"
                         ).permitAll()
                                 .anyRequest().authenticated()
                 )
