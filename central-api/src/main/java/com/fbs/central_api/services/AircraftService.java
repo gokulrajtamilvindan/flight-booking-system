@@ -11,6 +11,8 @@ import com.fbs.central_api.utilities.MappingUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class AircraftService {
     UserService userService;
@@ -46,5 +48,9 @@ public class AircraftService {
 
     public Aircraft createAircraft(Aircraft aircraft) {
         return dbApiConnector.callCreateAircraftEndpoint(aircraft);
+    }
+
+    public Aircraft getAircraftById(UUID id) {
+        return dbApiConnector.callGetAircraftByIdEndpoint(id);
     }
 }

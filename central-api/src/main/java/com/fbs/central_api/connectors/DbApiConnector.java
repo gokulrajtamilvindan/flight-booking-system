@@ -1,9 +1,7 @@
 package com.fbs.central_api.connectors;
 
 import com.fbs.central_api.dtos.AllUsersDto;
-import com.fbs.central_api.models.Aircraft;
-import com.fbs.central_api.models.Airline;
-import com.fbs.central_api.models.AppUser;
+import com.fbs.central_api.models.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -123,6 +121,46 @@ public class DbApiConnector {
         String url = dbApiBaseUrl + "/aircraft/create";
         RequestEntity request = RequestEntity.post(url).body(aircraft);
         ResponseEntity<Aircraft> response = restTemplate.exchange(url, HttpMethod.POST, request, Aircraft.class);
+        return response.getBody();
+    }
+
+    public Aircraft callGetAircraftByIdEndpoint(UUID aircraftId) {
+        String url = dbApiBaseUrl + "/aircraft/" + aircraftId.toString();
+        RequestEntity request = RequestEntity.get(url).build();
+        ResponseEntity<Aircraft> response = restTemplate.exchange(url, HttpMethod.GET, request, Aircraft.class);
+        return response.getBody();
+    }
+
+    public Flight callCreateFlightEndpoint(Flight flight) {
+        String url = dbApiBaseUrl + "/flight/create";
+        RequestEntity request = RequestEntity.post(url).body(flight);
+        ResponseEntity<Flight> response = restTemplate.exchange(url, HttpMethod.POST, request, Flight.class);
+        return response.getBody();
+    }
+
+    public FlightSeatMapping callCreateFlightSeatMappingEndpoint(FlightSeatMapping flightSeatMapping) {
+        String url = dbApiBaseUrl + "/seatmapping/create";
+        RequestEntity request = RequestEntity.post(url).body(flightSeatMapping);
+        ResponseEntity<FlightSeatMapping> response = restTemplate.exchange(url, HttpMethod.POST, request, FlightSeatMapping.class);
+        return response.getBody();
+    }
+
+    public SubFlight callCreateSubFlightEndpoint(SubFlight subFlight) {
+        String url = dbApiBaseUrl + "/subflight/create";
+        RequestEntity request = RequestEntity.post(url).body(subFlight);
+        ResponseEntity<SubFlight> response = restTemplate.exchange(url, HttpMethod.POST, request, SubFlight.class);
+        return response.getBody();
+    }
+
+    public Object callSearchFlightEndpoint(String sourceAirport,
+                                                 String destinationAirport,
+                                                 String dateTime) {
+        String url = dbApiBaseUrl + "/flight/search?" +
+                "sourceAirport=" + sourceAirport + "&" +
+                "destinationAirport=" + destinationAirport + "&" +
+                "dateTime=" + dateTime;
+        RequestEntity request = RequestEntity.get(url).build();
+        ResponseEntity<Object> response = restTemplate.exchange(url, HttpMethod.GET, request, Object.class);
         return response.getBody();
     }
 }

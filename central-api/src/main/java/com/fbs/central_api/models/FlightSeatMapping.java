@@ -1,29 +1,23 @@
-package com.fbs.db_api.models;
+package com.fbs.central_api.models;
 
-import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-/*
-    This flight seat mapping model will be used for non connecting flights
-*/
-
 @Data
-@Entity
-@Table(name = "flight_seat_mapping")
+@NoArgsConstructor
+@AllArgsConstructor
 public class FlightSeatMapping {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     UUID id;
     String className;
-    String range; // 1-20
+    String range;
     int basePrice;
     int windowPrice;
     int totalWindow;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
-    @ManyToOne
     Flight flight;
 }

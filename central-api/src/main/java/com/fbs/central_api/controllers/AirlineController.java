@@ -2,10 +2,13 @@ package com.fbs.central_api.controllers;
 
 import com.fbs.central_api.dtos.AircraftRegistrationDto;
 import com.fbs.central_api.dtos.AirlineRegistrationDto;
+import com.fbs.central_api.dtos.FlightDetailsDto;
 import com.fbs.central_api.models.Aircraft;
 import com.fbs.central_api.models.Airline;
+import com.fbs.central_api.models.Flight;
 import com.fbs.central_api.services.AircraftService;
 import com.fbs.central_api.services.AirlineService;
+import com.fbs.central_api.services.FlightService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,12 +23,15 @@ import java.util.UUID;
 public class AirlineController {
     AirlineService airlineService;
     AircraftService aircraftService;
+    FlightService flightService;
 
     @Autowired
     public AirlineController(AirlineService airlineService,
-                             AircraftService aircraftService) {
+                             AircraftService aircraftService,
+                             FlightService flightService) {
         this.airlineService = airlineService;
         this.aircraftService = aircraftService;
+        this.flightService = flightService;
     }
 
     @PostMapping("/register")
@@ -63,5 +69,11 @@ public class AirlineController {
     public Aircraft registerAircraft(@RequestBody AircraftRegistrationDto aircraftRegistrationDto,
                                      @RequestHeader String authorization) {
         return aircraftService.registerAircraft(aircraftRegistrationDto, authorization);
+    }
+
+    @PostMapping("/flight/create")
+    public Flight createFlight(@RequestBody FlightDetailsDto flightDetailsDto,
+                             @RequestHeader String authorization) {
+        return flightService.createFlight(flightDetailsDto, authorization);
     }
 }

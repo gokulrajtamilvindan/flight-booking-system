@@ -9,12 +9,17 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name = "sub_flight_seat_mapping")
-public class SubFlightSeatMapping extends SeatMapping {
+public class SubFlightSeatMapping {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     UUID id;
-    @ManyToOne
-    SubFlight subFlight;
+    String className;
+    String range; // 1-20
+    int basePrice;
+    int windowPrice;
+    int totalWindow;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
+    @ManyToOne
+    SubFlight subFlight;
 }
